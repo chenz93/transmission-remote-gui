@@ -1,5 +1,6 @@
 import SwiftUI
 import TransmissionKit
+import TransmissionLocalization
 
 /// The daemon's global settings (`session-get` / `session-set`), in a tabbed layout.
 /// Every control applies the change on the server immediately (`updateSession`), then
@@ -30,7 +31,7 @@ struct SettingsView: View {
 
 // MARK: - General (language)
 
-/// Language picker (System / Hungarian / English) — switches immediately — plus the
+/// Language picker — switches immediately — plus the
 /// update check and the opt-in usage statistics.
 private struct GeneralSettingsTab: View {
     @Bindable private var l10n = Localization.shared
@@ -41,7 +42,7 @@ private struct GeneralSettingsTab: View {
         Form {
             Picker(loc("Nyelv"), selection: $l10n.language) {
                 ForEach(AppLanguage.allCases) { lang in
-                    Text(lang.title).tag(lang)
+                    Text(lang == .system ? loc("Rendszer") : lang.title).tag(lang)
                 }
             }
             .pickerStyle(.inline)
@@ -429,7 +430,7 @@ private struct QueueSettingsTab: View {
                 }
                 SettingRow(title: "Inaktivitás", description: "Ennyi perc forgalommentesség után számít elakadtnak.") {
                     Stepper(value: b.int(\.queueStalledMinutes, default: 30) { $0.queueStalledMinutes = $1 }, in: 1...1440, step: 5) {
-                        Text("\(model.sessionInfo?.queueStalledMinutes ?? 0) perc").monospacedDigit().frame(minWidth: 60, alignment: .trailing)
+                        Text(String(model.sessionInfo?.queueStalledMinutes ?? 0) + " " + loc("perc")).monospacedDigit().frame(minWidth: 60, alignment: .trailing)
                     }
                     .disabled(!(model.sessionInfo?.queueStalledEnabled ?? false))
                 }
@@ -492,7 +493,7 @@ private struct SeedingSettingsTab: View {
                 }
                 SettingRow(title: "Tétlenségi idő", description: "Ennyi perc aktivitásmentesség után leáll a seedelés.") {
                     Stepper(value: b.int(\.idleSeedingLimit, default: 30) { $0.idleSeedingLimit = $1 }, in: 1...1440, step: 5) {
-                        Text("\(model.sessionInfo?.idleSeedingLimit ?? 0) perc").monospacedDigit().frame(minWidth: 60, alignment: .trailing)
+                        Text(String(model.sessionInfo?.idleSeedingLimit ?? 0) + " " + loc("perc")).monospacedDigit().frame(minWidth: 60, alignment: .trailing)
                     }
                     .disabled(!(model.sessionInfo?.idleSeedingLimitEnabled ?? false))
                 }
@@ -568,7 +569,7 @@ private struct DaySelector: View {
 
     private var symbols: [String] {
         let df = DateFormatter()
-        df.locale = Locale(identifier: Localization.shared.effective == .hungarian ? "hu_HU" : "en_US")
+        df.locale = Localization.shared.locale
         return df.veryShortStandaloneWeekdaySymbols ?? ["S", "M", "T", "W", "T", "F", "S"]
     }
     private let order = [1, 2, 3, 4, 5, 6, 0]   // Mon…Sun → index into symbols

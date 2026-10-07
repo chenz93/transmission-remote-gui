@@ -16,10 +16,11 @@ enum Notifier {
     }
 
     /// Notification about a finished (download complete) torrent.
+    @MainActor
     static func torrentFinished(name: String) {
         guard isAvailable else { return }
         let content = UNMutableNotificationContent()
-        content.title = "Torrent kész"
+        content.title = loc("Torrent kész")
         content.body = name
         content.sound = .default
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
