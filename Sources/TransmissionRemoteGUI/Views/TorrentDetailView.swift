@@ -271,7 +271,7 @@ private struct TrackersTab: View {
         } else {
             Table(trackers) {
                 TableColumn(loc("Tracker")) { Text($0.displayHost).lineLimit(1) }
-                TableColumn(loc("Állapot")) { Text($0.lastAnnounceResult ?? "—").lineLimit(1) }
+                TableColumn(loc("Állapot")) { Text(Localization.shared.trackerResult($0.lastAnnounceResult)).lineLimit(1) }
                 TableColumn(loc("Seedek")) { t in Text(count(t.seederCount)) }.width(60)
                 TableColumn(loc("Leecherek")) { t in Text(count(t.leecherCount)) }.width(70)
             }

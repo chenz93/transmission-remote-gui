@@ -40,7 +40,7 @@ classic [transgui](https://github.com/transmission-remote-gui/transgui) (Lazarus
 - **Notification** when a torrent finishes downloading
 - **Menu bar (tray) icon** with ↓/↑ speeds and a live graph; the **Dock icon can be hidden** (app lives in the menu bar only)
 - UI zoom (⌘+ / ⌘− / ⌘0), automatic refresh with configurable interval
-- **Bilingual UI**: English and Hungarian, switchable at runtime (Settings → General)
+- **Multilingual UI**: English, Hungarian and Simplified Chinese, switchable at runtime (Settings → General); separate, reusable [language packs](docs/localization.md)
 - **Update check**: once a day (and from the app menu: *Check for Updates…*) — a new release shows as a small link in the sidebar (no pop-ups), with the `brew upgrade` command for Homebrew installs; *Skip This Version* is remembered
 - **Opt-in, anonymous usage statistics** — off unless you switch it on in Settings → General; see [Privacy](https://github.com/epaxpax/transmission-remote-gui#privacy)
 
@@ -64,8 +64,10 @@ The app talks to your Transmission daemon(s) and, only with your consent or sett
 | Layer | Contents |
 |-------|----------|
 | `TransmissionKit` | UI-independent core: `RPCClient` (409 handshake, basic auth), Codable models, typed RPC wrappers, formatters. Testable without a daemon. |
+| `TransmissionLocalization` | UI-independent language packs, locale selection, fallback and runtime language preference. |
 | `TransmissionRemoteGUI` | SwiftUI app: `AppModel` (`@Observable`), `NavigationSplitView` + inspector, tray, settings. |
 | `KitTests` | Standalone test runner (the CLT toolchain has no XCTest). |
+| `LocalizationTests` | Standalone tests for translation coverage, language selection, persistence and status formatting. |
 
 The client targets the **classic** Transmission RPC protocol
 (`{"method":"torrent-get","arguments":{…},"tag":N}`, camelCase fields), used by Transmission
@@ -82,6 +84,7 @@ The client targets the **classic** Transmission RPC protocol
 swift build                            # compile
 swift run TransmissionRemoteGUI        # run the app (for development)
 swift run KitTests                     # unit tests (RPC envelope, 409 handshake, model decoding, URL normalization, rule engine)
+swift run LocalizationTests            # language packs, fallback, Chinese coverage, preferences and statuses
 ```
 
 ### Installable `.app` bundle

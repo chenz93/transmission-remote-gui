@@ -22,3 +22,6 @@ jobs:
 
       - name: Unit tests
         run: swift run KitTests
+
+      - name: Localization tests
+        run: swift run LocalizationTests
