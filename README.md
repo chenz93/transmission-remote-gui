@@ -13,7 +13,7 @@ classic [transgui](https://github.com/transmission-remote-gui/transgui) (Lazarus
 > **Clean-room reimplementation:** only the features were used as reference, no code from
 > other projects. The entire source was written independently in Swift.
 
-*Magyar leírás: [README.hu.md](README.hu.md)*
+*Languages: English | [Magyar](README.hu.md) | [简体中文](README.zh-CN.md)*
 
 ![Transmission Remote GUI on macOS](docs/screenshot.png)
 

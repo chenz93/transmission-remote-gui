@@ -8,7 +8,7 @@ tiszta lapról írt macOS-újragondolása.
 > **Clean-room reimplementáció:** csak a funkciókat veszi alapul, más projekt kódját nem.
 > A teljes forrás önállóan, Swiftben íródott.
 
-*English description: [README.md](README.md)*
+*Nyelvek: [English](README.md) | Magyar | [简体中文](README.zh-CN.md)*
 
 ## Funkciók
 
