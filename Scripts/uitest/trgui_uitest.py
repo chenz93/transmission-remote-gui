@@ -476,3 +476,4 @@ nap(0.8);
 
 
 KEY_MOVE = [46, 31, 9, 14, 36]      # type-select "move", Return
+KEY_SHOW = [1, 4, 31, 13, 36]       # type-select "show" (Show in Finder), Return

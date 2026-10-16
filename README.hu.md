@@ -27,7 +27,7 @@ tiszta lapról írt macOS-újragondolása.
 - **Sebesség-grafikon** — élő mini-chart a sidebarban, részletes **Statisztika panel**, és Stats-szerű **menüsor-popover**
 - **Sorrendi („streaming") letöltés** (Transmission 4.1+) — a darabok sorrendben töltődnek, így a média nézhető letöltés közben; hivatalos GUI/Web UI még nem tudja
 - **Több szerver**, kezelés a Beállításokban; a jelszó a **Keychain**ben; **induláskori auto-connect** a legutóbbi szerverhez
-- **Megjelenítés a Finderben** szerverenkénti távoli–helyi [útvonal-hozzárendelésekkel](docs/path-mappings.md), csatolt megosztásokhoz; a dupla kattintás működése változatlan
+- **Megjelenítés a Finderben** szerverenkénti távoli–helyi [útvonal-hozzárendelésekkel](docs/path-mappings.md), csatolt megosztásokhoz (a menüpont akkor jelenik meg, ha a szerverhez van hozzárendelés)
 - Teljes **session-beállítások** (sebesség, peerek, hálózat, sorok, letöltés, seedelés) — azonnali `session-set` írással
 - **Turtle mód** egy kattintással, plusz **sávszélesség-ütemező** (turbó automatikus be/ki napszak és hét napja szerint)
 - **Értesítés** a torrent letöltésének befejeződésekor
@@ -126,6 +126,7 @@ python3 Scripts/uitest/test_context_menu.py    # sor-menü minden oszlopon
 python3 Scripts/uitest/test_columns.py         # fejléc-menü: oszlopok ki/be, megmaradás, visszaállítás
 python3 Scripts/uitest/test_filters.py         # sidebar tracker- / mappaszűrők, „Összes” sorok
 python3 Scripts/uitest/test_peers.py           # Peerek fül: zászlók, rendezés (kitalált peerek helyi proxyn át)
+python3 Scripts/uitest/test_path_mappings.py   # Megjelenítés a Finderben útvonal-hozzárendeléssel (helyi mock szerver)
 python3 Scripts/uitest/test_updates.py         # frissítés-ellenőrzés + opt-in statisztika (helyi szerverrel)
 python3 Scripts/uitest/test_rules.py "dist/Transmission Remote GUI.app"
 UITEST_DAEMON=tr4 python3 Scripts/uitest/test_rules.py …   # 3.00 helyett Transmission 4.x ellen

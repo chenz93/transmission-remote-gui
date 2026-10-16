@@ -37,7 +37,7 @@
 - **速度图表**——侧边栏中的实时迷你图表、详细的**统计面板**以及类似 Stats 的**菜单栏弹出面板**
 - **顺序（“流式”）下载**（Transmission 4.1+）——按顺序下载数据块，以便在下载过程中观看媒体；官方 GUI／Web UI 目前尚未提供这一操作入口
 - **多服务器**管理：在设置中配置服务器，密码保存在 **Keychain（钥匙串）** 中；启动时**自动连接**上次使用的服务器
-- **在 Finder 中显示** — 为每台服务器配置远程到本地的[路径映射](docs/path-mappings.md)，定位已挂载共享中的下载内容；双击行为保持不变
+- **在 Finder 中显示** — 为每台服务器配置远程到本地的[路径映射](docs/path-mappings.md)，定位已挂载共享中的下载内容（服务器配置了映射后才显示该菜单项）
 - 完整的 **session（会话）设置**：速度、节点、网络、队列、下载和做种设置，通过 `session-set` 即时写入服务端
 - 一键切换 **Turtle 模式（备用速度限制）**，并提供**带宽计划**，按时段和星期几自动开启／关闭备用速度模式
 - 种子下载完成时发送**通知**
@@ -136,6 +136,7 @@ python3 Scripts/uitest/test_context_menu.py    # 在每一列中测试种子行�
 python3 Scripts/uitest/test_columns.py         # 表头菜单：列显示／隐藏、持久化、恢复默认
 python3 Scripts/uitest/test_filters.py         # 侧边栏 Tracker／文件夹筛选，以及“全部”行
 python3 Scripts/uitest/test_peers.py           # 节点标签页：旗帜、排序（通过本地代理提供虚构节点）
+python3 Scripts/uitest/test_path_mappings.py   # 通过路径映射在 Finder 中显示（本地模拟服务器）
 python3 Scripts/uitest/test_updates.py         # 检查更新和自愿开启的使用统计（使用本地服务器）
 python3 Scripts/uitest/test_rules.py "dist/Transmission Remote GUI.app"
 UITEST_DAEMON=tr4 python3 Scripts/uitest/test_rules.py …   # 使用 Transmission 4.x，而非 3.00

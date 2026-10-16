@@ -36,7 +36,7 @@ classic [transgui](https://github.com/transmission-remote-gui/transgui) (Lazarus
 - **Speed graph** — a live mini-chart in the sidebar, a detailed **Statistics panel**, and a Stats-style **menu-bar popover**
 - **Sequential ("streaming") download** (Transmission 4.1+) — pieces download in order so media can be watched while still downloading; no official GUI/Web UI exposes this yet
 - **Multiple servers**, managed in Settings; passwords stored in the **Keychain**; **auto-connect** to the last used server on launch
-- **Show in Finder** via per-server remote-to-local [path mappings](docs/path-mappings.md) for mounted shares; double-click behaviour is unchanged
+- **Show in Finder** via per-server remote-to-local [path mappings](docs/path-mappings.md) for mounted shares (the menu item appears once a server has a mapping)
 - Full **session settings** (speed, peers, network, queues, download, seeding) — written immediately via `session-set`
 - **Turtle mode** (alternative speed limits) with one click, plus a **bandwidth scheduler** (turbo on/off by time of day and day of week)
 - **Notification** when a torrent finishes downloading
@@ -136,6 +136,7 @@ python3 Scripts/uitest/test_context_menu.py    # row context menu on every colum
 python3 Scripts/uitest/test_columns.py         # header menu: show/hide columns, persistence, reset
 python3 Scripts/uitest/test_filters.py         # sidebar tracker / folder filters, "All" rows
 python3 Scripts/uitest/test_peers.py           # Peers tab: flags, sorting (made-up peers via a local proxy)
+python3 Scripts/uitest/test_path_mappings.py   # Show in Finder via path mappings (local mock server)
 python3 Scripts/uitest/test_updates.py         # update check + opt-in usage ping (local server)
 python3 Scripts/uitest/test_rules.py "dist/Transmission Remote GUI.app"
 UITEST_DAEMON=tr4 python3 Scripts/uitest/test_rules.py …   # against Transmission 4.x instead of 3.00

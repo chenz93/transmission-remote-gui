@@ -33,6 +33,7 @@ struct TorrentListView: View {
                         scale: model.uiScale,
                         effective: Localization.shared.effective,  // header refreshes on language change
                         serverID: model.selectedServerID,
+                        hasPathMappings: !(model.selectedServer?.pathMappings ?? []).isEmpty,
                         onCommand: handle
                     )
                 }
