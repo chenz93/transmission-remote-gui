@@ -128,6 +128,13 @@ func testPathMappings(_ t: TestHarness) async {
         try t.expect(!TorrentRowMenu.isEnabled(.showInFinder, for: [Torrent(id: 2)]), "missing directory")
         try t.expect(!TorrentRowMenu.isEnabled(.showInFinder, for: [item, Torrent(id: 2)]), "all selected targets need paths")
     }
+    await t.test("Show in Finder is only in the menu when the server has path mappings") {
+        try t.expect(!TorrentRowMenu.isVisible(.showInFinder, hasPathMappings: false), "hidden without mappings")
+        try t.expect(TorrentRowMenu.isVisible(.showInFinder, hasPathMappings: true), "shown with mappings")
+        for command in TorrentRowCommand.allCases where command != .showInFinder {
+            try t.expect(TorrentRowMenu.isVisible(command, hasPathMappings: false), "\(command) always shown")
+        }
+    }
     await t.test("Finder lookup only requests minimal torrent-get fields") {
         MockURLProtocol.reset()
         MockURLProtocol.handler = { _, _ in (200, [:], Data(#"{"result":"success","arguments":{"torrents":[]}}"#.utf8)) }

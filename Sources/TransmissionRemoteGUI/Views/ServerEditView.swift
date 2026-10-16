@@ -30,31 +30,31 @@ struct ServerEditView: View {
                 .padding(.bottom, 12)
 
             TabView {
-              Form {
-                TextField(loc("Név"), text: $name)
-                TextField(loc("Hoszt"), text: $host)
-                TextField("Port", text: $port)
-                TextField(loc("RPC útvonal"), text: $path)
-                Toggle("HTTPS", isOn: $useHTTPS)
-                TextField(loc("Felhasználónév (opcionális)"), text: $username)
-                SecureField(loc("Jelszó (opcionális)"), text: $password)
-                HStack {
-                    Text(loc("Frissítés"))
-                    Slider(value: $refreshInterval, in: 1...30, step: 1)
-                    Text("\(Int(refreshInterval)) \(loc("mp"))").monospacedDigit().frame(width: 48)
-                }
-                Section(loc("Kliens-tanúsítvány (mTLS, opcionális)")) {
+                Form {
+                    TextField(loc("Név"), text: $name)
+                    TextField(loc("Hoszt"), text: $host)
+                    TextField("Port", text: $port)
+                    TextField(loc("RPC útvonal"), text: $path)
+                    Toggle("HTTPS", isOn: $useHTTPS)
+                    TextField(loc("Felhasználónév (opcionális)"), text: $username)
+                    SecureField(loc("Jelszó (opcionális)"), text: $password)
                     HStack {
-                        TextField(loc(".p12 fájl útvonala"), text: $clientCertPath)
-                        Button(loc("Tallózás…")) { showCertImporter = true }
+                        Text(loc("Frissítés"))
+                        Slider(value: $refreshInterval, in: 1...30, step: 1)
+                        Text("\(Int(refreshInterval)) \(loc("mp"))").monospacedDigit().frame(width: 48)
                     }
-                    SecureField(loc("Tanúsítvány jelszava"), text: $clientCertPassword)
+                    Section(loc("Kliens-tanúsítvány (mTLS, opcionális)")) {
+                        HStack {
+                            TextField(loc(".p12 fájl útvonala"), text: $clientCertPath)
+                            Button(loc("Tallózás…")) { showCertImporter = true }
+                        }
+                        SecureField(loc("Tanúsítvány jelszava"), text: $clientCertPassword)
+                    }
                 }
-              }
-              .formStyle(.grouped)
-              .tabItem { Text(loc("Csatlakozás")) }
-              PathMappingsView(rows: $pathMappings)
-                  .tabItem { Text(loc("Útvonal-hozzárendelések")) }
+                .formStyle(.grouped)
+                .tabItem { Text(loc("Csatlakozás")) }
+                PathMappingsView(rows: $pathMappings)
+                    .tabItem { Text(loc("Útvonal-hozzárendelések")) }
             }
             .fileImporter(isPresented: $showCertImporter,
                           allowedContentTypes: [UTType(filenameExtension: "p12") ?? .data,

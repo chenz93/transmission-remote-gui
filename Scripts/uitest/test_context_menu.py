@@ -29,6 +29,15 @@ try:
                 ui.click("button 1 of group 1 of sheet 1 of window 1"); time.sleep(0.6)
             else:
                 failed.append(name)
+    # The test server has no path mappings, so "Show in Finder" must stay out of the menu
+    # (and must not leave a double separator behind).
+    ui.activate()
+    x, y = ui.position(f"UI element 1 of row 1 of {T}")
+    items = ui.context_menu_items(x, y).split("|")
+    ok = "Show in Finder" not in items and "-|-" not in "|".join(items)
+    print(f"  {'✓' if ok else '✗'} no Show in Finder without path mappings")
+    if not ok:
+        print(f"    {items}"); failed.append("Show in Finder hidden")
 finally:
     ui.remove_all(); ui.teardown()
 print(f"\n{'all columns OK' if not failed else str(len(failed)) + ' failed'}")

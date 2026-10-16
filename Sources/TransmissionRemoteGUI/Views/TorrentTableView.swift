@@ -13,6 +13,7 @@ struct TorrentTableView: NSViewRepresentable {
     var scale: Double = 1.0
     var effective: AppLanguage = .hungarian   // for tracking language changes (column header refresh)
     var serverID: UUID?
+    var hasPathMappings = false
     /// Invoked when a context-menu command is chosen. The targeted torrents are captured
     /// when the menu opens, so the command never depends on the selection binding having
     /// propagated back to SwiftUI in the meantime.
@@ -235,12 +236,17 @@ struct TorrentTableView: NSViewRepresentable {
             guard !menuTargets.isEmpty else { return nil }
 
             // Titles are refreshed on every open so a language switch is picked up for free.
+            // A hidden entry takes its separator with it.
+            var previousHidden = false
             for item in rowMenu.items {
+                if item.isSeparatorItem { item.isHidden = previousHidden; continue }
                 guard let command = item.representedObject as? TorrentRowCommand,
                       let entry = TorrentRowMenu.layout.first(where: { $0.command == command })
                 else { continue }
                 item.title = loc(entry.titleKey)
                 item.isEnabled = TorrentRowMenu.isEnabled(command, for: menuTargets)
+                item.isHidden = !TorrentRowMenu.isVisible(command, hasPathMappings: parent.hasPathMappings)
+                previousHidden = item.isHidden
             }
             return rowMenu
         }

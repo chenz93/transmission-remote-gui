@@ -28,7 +28,8 @@ them. Older configurations without mappings continue to work.
 
 ## Reveal a torrent
 
-Right-click a torrent and choose **Show in Finder**. The action selects a single
+Right-click a torrent and choose **Show in Finder** (the item is only in the menu
+when the current server has at least one mapping). The action selects a single
 file or a multi-file torrent's top-level folder in Finder. For torrents with files
 directly in the download directory, it selects that directory. Multiple selected
 torrents can be revealed together; every target must resolve successfully before

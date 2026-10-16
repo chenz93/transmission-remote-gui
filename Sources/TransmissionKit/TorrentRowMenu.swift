@@ -65,6 +65,12 @@ public enum TorrentRowMenu {
         rows.compactMap { $0 >= 0 && $0 < torrents.count ? torrents[$0] : nil }
     }
 
+    /// Whether `command` belongs in the menu at all. "Show in Finder" only makes sense
+    /// once the server has path mappings, so without them it stays out of the way.
+    public static func isVisible(_ command: TorrentRowCommand, hasPathMappings: Bool) -> Bool {
+        command != .showInFinder || hasPathMappings
+    }
+
     /// Whether `command` applies to the given target torrents.
     public static func isEnabled(_ command: TorrentRowCommand, for torrents: [Torrent]) -> Bool {
         guard !torrents.isEmpty else { return false }
