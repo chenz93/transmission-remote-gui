@@ -25,3 +25,6 @@ jobs:
 
       - name: Localization tests
         run: swift run LocalizationTests
+
+      - name: Torrent text-cell layout
+        run: bash Scripts/uitest/test_text_cell_layout.sh
