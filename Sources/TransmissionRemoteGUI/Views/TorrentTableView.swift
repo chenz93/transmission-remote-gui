@@ -392,13 +392,10 @@ struct TorrentTableView: NSViewRepresentable {
                 return cell
             } else {
                 let id = NSUserInterfaceItemIdentifier("textCell")
-                let field = (tableView.makeView(withIdentifier: id, owner: nil) as? NSTextField) ?? {
-                    let f = NSTextField(labelWithString: "")
-                    f.identifier = id
-                    f.lineBreakMode = .byTruncatingTail
-                    f.cell?.usesSingleLineMode = true
-                    return f
+                let cell = (tableView.makeView(withIdentifier: id, owner: nil) as? TorrentTextCell) ?? {
+                    let c = TorrentTextCell(); c.identifier = id; return c
                 }()
+                let field = cell.label
                 field.font = spec.monospaced
                     ? .monospacedDigitSystemFont(ofSize: fontSize, weight: .regular)
                     : .systemFont(ofSize: fontSize)
@@ -406,7 +403,8 @@ struct TorrentTableView: NSViewRepresentable {
                 field.alignment = spec.alignment
                 field.textColor = spec.color(t) ?? .labelColor
                 field.toolTip = spec.id == "name" && t.hasError ? t.errorString : nil
-                return field
+                cell.toolTip = field.toolTip
+                return cell
             }
         }
 

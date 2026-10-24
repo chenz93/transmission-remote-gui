@@ -32,7 +32,7 @@ tiszta lapról írt macOS-újragondolása.
 - **Turtle mód** egy kattintással, plusz **sávszélesség-ütemező** (turbó automatikus be/ki napszak és hét napja szerint)
 - **Értesítés** a torrent letöltésének befejeződésekor
 - **Menüsor (tray) ikon** le/fel sebességgel és élő grafikonnal; a **Dock-ikon elrejthető** (csak a menüsorban él)
-- UI-nagyítás (⌘+ / ⌘− / ⌘0), automatikus, állítható időközű frissítés
+- UI-nagyítás (⌘+ / ⌘− / ⌘0), függőlegesen középre igazított torrentlista-szöveg minden nagyításnál, automatikus, állítható időközű frissítés
 - **Többnyelvű felület**: angol, magyar és egyszerűsített kínai, futásidőben váltható (Beállítások → Általános); különálló, újrahasznosítható [nyelvi csomagok](docs/localization.md)
 - **Frissítés-ellenőrzés**: naponta egyszer (és az app menüjéből: *Frissítések keresése…*) — az új kiadás csak egy kis link az oldalsávban (nincs felugró ablak), Homebrew-os telepítésnél a `brew upgrade` paranccsal; a *Kihagyom ezt a verziót* megmarad
 - **Bekapcsolható, névtelen használati statisztika** — csak ha bekapcsolod a Beállítások → Általános fülön; lásd [Adatvédelem](https://github.com/epaxpax/transmission-remote-gui/blob/main/README.hu.md#adatvédelem)

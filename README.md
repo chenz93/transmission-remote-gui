@@ -41,7 +41,7 @@ classic [transgui](https://github.com/transmission-remote-gui/transgui) (Lazarus
 - **Turtle mode** (alternative speed limits) with one click, plus a **bandwidth scheduler** (turbo on/off by time of day and day of week)
 - **Notification** when a torrent finishes downloading
 - **Menu bar (tray) icon** with ↓/↑ speeds and a live graph; the **Dock icon can be hidden** (app lives in the menu bar only)
-- UI zoom (⌘+ / ⌘− / ⌘0), automatic refresh with configurable interval
+- UI zoom (⌘+ / ⌘− / ⌘0), vertically centered torrent-list text at every zoom level, automatic refresh with configurable interval
 - **Multilingual UI**: English, Hungarian and Simplified Chinese, switchable at runtime (Settings → General); separate, reusable [language packs](docs/localization.md)
 - **Update check**: once a day (and from the app menu: *Check for Updates…*) — a new release shows as a small link in the sidebar (no pop-ups), with the `brew upgrade` command for Homebrew installs; *Skip This Version* is remembered
 - **Opt-in, anonymous usage statistics** — off unless you switch it on in Settings → General; see [Privacy](https://github.com/epaxpax/transmission-remote-gui#privacy)
