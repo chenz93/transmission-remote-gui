@@ -34,8 +34,10 @@ struct TextCellLayoutTests {
                             field.textColor = .secondaryLabelColor
                             field.toolTip = sample
                             cell.layoutSubtreeIfNeeded()
-                            expect(abs(field.frame.midY - cell.bounds.midY) < 0.01, "Label stays vertically centered")
-                            expect(abs(field.frame.height - field.intrinsicContentSize.height) < 0.01,
+                            // Auto Layout snaps frames to the backing pixel grid: on a 1x display (the
+                            // CI runner) an odd height difference leaves the center up to 0.5 pt off.
+                            expect(abs(field.frame.midY - cell.bounds.midY) <= 0.5, "Label stays vertically centered")
+                            expect(abs(field.frame.height - field.intrinsicContentSize.height) <= 0.5,
                                    "Label keeps its natural single-line height")
                             expect(abs(field.frame.minX) < 0.01 && abs(field.frame.width - width) < 0.01,
                                    "Label uses the full column width: expected \(width), cell \(cell.frame), label \(field.frame), insets \(field.alignmentRectInsets)")
